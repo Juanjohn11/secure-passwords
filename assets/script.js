@@ -1,3 +1,4 @@
+var generateBtn = document.querySelector("#generate"); 
 // Get references to the #generate element
 function ran(low, high) {
      low = Math.ceil(low);
@@ -5,9 +6,10 @@ function ran(low, high) {
      
      return Math.floor(Math.random() * (high - low) + low);
 }
+//prompt the user for the length of password
 function passwordSize(){
      var charaLength = window.prompt("Length of password must be between 8 to 128.");
-      
+      // if statments not 8 - 128 alert invaild length and return
      while (charaLength < 8 || charaLength > 128){
         charaLength = window.prompt("Please enter a number betwenn 8 to 128.")
              
@@ -43,6 +45,7 @@ function generatePassword(){
      var securePassword = '';
      var length = passwordSize();
      while(pass == 0){
+          //confirm the user for all characters
           var lower = window.confirm("Would you like lowercase letters?");
          
           var upper = window.confirm("Would you like uppercase letter?");
@@ -50,41 +53,25 @@ function generatePassword(){
           var number = window.confirm("Would you like numbers?");
 
           var symbol = window.confirm("Would you like symbols?");
-          
+          //if all are false alert must have one and return
           if (lower === false && upper === false && number === false && symbol === false){
                window.alert("Must choose at least one."); 
           
-          }
+          }//else wind.alert must have one at least
           else{
                pass++;
           } 
      }
      var characters = ranChara(lower, upper, number, symbol);
-     
+     //for loop to run below multipe times
      for (i = 0; i < length ; i++) {
           var securePassword = securePassword + characters[ran(0, characters.length)]; 
-     } 
+     } // have math.random to get a random character from charas
 
      return(securePassword);
-
-}
-
+     //return password
+}     
    
-//confirm the user for all characters
-//if all are false alert must have one and return 
-//else wind.alert must have one at least
-//use if statments and confirm vars to create charas string 
-//for loop to run below multipe times
-
-// have math.random to get a random character from charas 
-//return password
-    
-// if statments not 8 - 128 alert invaild length and return
-//prompt the user for the length of password
-
-         
-     
-var generateBtn = document.querySelector("#generate");    
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
